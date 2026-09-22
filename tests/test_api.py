@@ -5,6 +5,19 @@ from app.main import app
 client = TestClient(app)
 
 
+def test_homepage() -> None:
+    response = client.get("/")
+    assert response.status_code == 200
+    assert "Professional Workflow Intake API" in response.text
+    assert "Process intake" in response.text
+
+
+def test_static_styles() -> None:
+    response = client.get("/static/styles.css")
+    assert response.status_code == 200
+    assert "workspace" in response.text
+
+
 def test_health_endpoint() -> None:
     response = client.get("/health")
     assert response.status_code == 200
