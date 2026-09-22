@@ -1,10 +1,10 @@
 # Professional Workflow Intake API
 
-A small Python/FastAPI service that converts unstructured professional-service intake notes into structured, reusable workflow data.
+A Python/FastAPI portfolio project that converts unstructured professional-service intake notes into structured workflow data. The repository includes both a REST API and a lightweight browser interface for demonstrating the workflow end to end.
 
-## Why this project
+## What it does
 
-Many professional workflows begin as emails, call notes, or free-form intake text. This API turns that unstructured text into a predictable JSON structure containing:
+Many professional workflows begin as emails, call notes, or free-form intake text. This project turns that unstructured text into a predictable structure containing:
 
 - email addresses and phone numbers
 - dates and deadlines
@@ -12,15 +12,16 @@ Many professional workflows begin as emails, call notes, or free-form intake tex
 - task priority
 - a concise intake summary
 
-The project is intentionally deterministic and dependency-light. It demonstrates workflow analysis, REST API design, validation, testing, and containerization without requiring a paid AI service.
+The parser is intentionally deterministic and dependency-light. It demonstrates Python application development, workflow analysis, REST API design, validation, testing, frontend/API integration, and containerization without requiring a paid external service.
 
 ## Tech stack
 
 - Python 3.12
 - FastAPI
 - Pydantic
-- Pytest
 - REST/JSON
+- HTML, CSS, and JavaScript
+- Pytest
 - Docker
 
 ## Run locally
@@ -32,9 +33,13 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-Open `http://127.0.0.1:8000/docs` for the interactive API documentation.
+Then open:
 
-## Example request
+- `http://127.0.0.1:8000/` — portfolio web interface
+- `http://127.0.0.1:8000/docs` — interactive API documentation
+- `http://127.0.0.1:8000/health` — health check
+
+## Example API request
 
 ```bash
 curl -X POST http://127.0.0.1:8000/parse \
@@ -73,10 +78,19 @@ curl -X POST http://127.0.0.1:8000/parse \
 pytest -q
 ```
 
+The suite covers the parser, JSON API, portfolio homepage, and static asset delivery.
+
+## Deployment
+
+The application is deployment-ready as a single FastAPI service. A typical production start command is:
+
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port $PORT
+```
+
 ## Possible next steps
 
 - add SQLite/PostgreSQL persistence
 - add authentication and role-based access
 - add configurable workflow rules
-- add optional LLM-assisted classification behind a provider interface
 - add webhook integrations for downstream workflow tools
