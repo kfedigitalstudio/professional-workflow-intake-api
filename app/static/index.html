@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A Python and FastAPI workflow intake demo that turns unstructured notes into structured contacts, dates, and action items." />
+  <title>Professional Workflow Intake API</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Professional Workflow Intake API home">
+      <span class="brand-mark" aria-hidden="true">PW</span>
+      <span>
+        <strong>Workflow Intake</strong>
+        <small>Python + FastAPI portfolio project</small>
+      </span>
+    </a>
+    <nav class="header-links" aria-label="Project links">
+      <a href="/docs">API Docs</a>
+      <a href="https://github.com/kfedigitalstudio/professional-workflow-intake-api" rel="noreferrer">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">WORKFLOW AUTOMATION DEMO</p>
+        <h1>Turn messy intake notes into organized work.</h1>
+        <p class="hero-text">
+          Paste unstructured client or service notes. The API identifies contact details,
+          dates, priorities, and follow-up actions and returns a clean structured response.
+        </p>
+        <div class="stack" aria-label="Technology stack">
+          <span>Python</span>
+          <span>FastAPI</span>
+          <span>Pydantic</span>
+          <span>REST / JSON</span>
+          <span>Pytest</span>
+          <span>Docker</span>
+        </div>
+      </div>
+
+      <div class="status-card" aria-label="Service status">
+        <span class="status-dot" aria-hidden="true"></span>
+        <div>
+          <strong>API ready</strong>
+          <p>POST <code>/parse</code> · GET <code>/health</code></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="workspace" aria-label="Workflow parser">
+      <article class="panel input-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="step">01 · INPUT</p>
+            <h2>Intake notes</h2>
+          </div>
+          <button class="text-button" id="sampleButton" type="button">Load sample</button>
+        </div>
+
+        <label for="intakeText">Paste notes below</label>
+        <textarea id="intakeText" rows="13" placeholder="Example: Client email: maria@example.com. Call client today. Submit documents by October 15, 2026."></textarea>
+        <div class="input-footer">
+          <span id="charCount">0 characters</span>
+          <button class="secondary-button" id="clearButton" type="button">Clear</button>
+        </div>
+        <button class="primary-button" id="processButton" type="button">
+          <span>Process intake</span>
+          <span aria-hidden="true">→</span>
+        </button>
+        <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
+      </article>
+
+      <article class="panel result-panel" aria-live="polite">
+        <div class="panel-heading">
+          <div>
+            <p class="step">02 · OUTPUT</p>
+            <h2>Structured workflow</h2>
+          </div>
+          <span class="result-state" id="resultState">Waiting for input</span>
+        </div>
+
+        <div class="empty-state" id="emptyState">
+          <div class="empty-icon" aria-hidden="true">{ }</div>
+          <h3>Results will appear here</h3>
+          <p>Process a note to see extracted contacts, dates, priorities, and action items.</p>
+        </div>
+
+        <div class="results hidden" id="results">
+          <section class="summary-card">
+            <p class="result-label">Summary</p>
+            <p id="summaryText"></p>
+          </section>
+
+          <div class="result-grid">
+            <section class="result-card">
+              <p class="result-label">Contact details</p>
+              <div id="contactsList" class="result-list"></div>
+            </section>
+            <section class="result-card">
+              <p class="result-label">Dates mentioned</p>
+              <div id="datesList" class="result-list"></div>
+            </section>
+          </div>
+
+          <section class="actions-card">
+            <div class="actions-heading">
+              <p class="result-label">Action items</p>
+              <span id="actionCount">0 items</span>
+            </div>
+            <div id="actionsList" class="actions-list"></div>
+          </section>
+        </div>
+      </article>
+    </section>
+
+    <section class="architecture">
+      <div>
+        <p class="eyebrow">HOW IT WORKS</p>
+        <h2>Small project, production-style structure.</h2>
+      </div>
+      <div class="architecture-grid">
+        <article>
+          <span>1</span>
+          <h3>Accept</h3>
+          <p>FastAPI validates incoming JSON with Pydantic models.</p>
+        </article>
+        <article>
+          <span>2</span>
+          <h3>Parse</h3>
+          <p>Python extracts contacts, dates, action verbs, and urgency signals.</p>
+        </article>
+        <article>
+          <span>3</span>
+          <h3>Structure</h3>
+          <p>The service returns predictable JSON ready for another system or UI.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built by Elie Salomon · <a href="https://github.com/kfedigitalstudio/professional-workflow-intake-api" rel="noreferrer">View source on GitHub</a></p>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
